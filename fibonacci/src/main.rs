@@ -7,10 +7,12 @@ use crate::fibonacci as fib;
 // to make compiler look for code.
 mod fibonacci;
 
+mod tests;
+
 // deliberately use matches
 fn main() {
    
-    let mut number: i32 = 0;
+    let mut number: i32;
 
     let mut should_recurse = false;
 
@@ -48,7 +50,7 @@ fn main() {
         };
     };
 
-    let mut fib_num: i32 = 0;
+    let fib_num: i32;
     match should_recurse {
         true => fib_num = fib::fib_rec::fib_rec(number),
         false => fib_num = fib::fib_iter::fib_iter(number)
