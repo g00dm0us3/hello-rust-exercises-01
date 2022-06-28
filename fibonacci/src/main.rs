@@ -1,37 +1,7 @@
 use std::io;
 use std::cmp::Ordering;
 
-const MAX_FIB_NUMBER_FOR_RECURSION: i32 = 20;
-const MAX_FIB_NUMBER: i32 = 30;
-
-fn fib_rec(n: i32) -> i32 {
-    if n == 1 {
-        return 1;
-    }
-
-    if n <= 0 {
-        return 0;
-    }
-
-    fib_rec(n-1) + fib_rec(n-2)
-}
-
-fn fib_iter(n: i32) -> i32 {
-    if n <= 2 {
-        return 1;
-    }
-
-    let mut f1 = 1;
-    let mut f2 = 1;
-
-    for _i in 0..n-2 {
-        let t = f2;
-        f2 = f1 + f2;
-        f1 = t;
-    }
-
-    return f2;
-}
+mod fibonacci;
 
 // deliberately use matches
 fn main() {
@@ -52,7 +22,7 @@ fn main() {
                     }
                 };
 
-                if number > MAX_FIB_NUMBER {
+                if number > fibonacci::MAX_FIB_NUMBER {
                     println!("{} Fibbonacci number won't fit into 32 bits!", number);
                     continue;
                 }
@@ -62,7 +32,7 @@ fn main() {
                     continue;
                 }
 
-                match number.cmp(&MAX_FIB_NUMBER_FOR_RECURSION) {
+                match number.cmp(&fibonacci::MAX_FIB_NUMBER_FOR_RECURSION) {
                     Ordering::Greater => should_recurse = false,
                     _ => break
                 };
@@ -80,8 +50,8 @@ fn main() {
 
     let mut fib_num: i32 = 0;
     match should_recurse {
-        true => fib_num = fib_rec(number),
-        false => fib_num = fib_iter(number)
+        true => fib_num = fibonacci::fib_rec(number),
+        false => fib_num = fibonacci::fib_iter(number)
     };
 
     println!("{}th Fibonacci number is {}", number, fib_num);
