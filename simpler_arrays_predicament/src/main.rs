@@ -1,6 +1,7 @@
 mod primitive_arr;
 
 use crate::primitive_arr::*;
+mod tests;
 
 fn main() {
     let arr = [1,2,234,4,556,6,1888];
