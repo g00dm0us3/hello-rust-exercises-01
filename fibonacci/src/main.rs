@@ -50,8 +50,8 @@ fn main() {
 
     let mut fib_num: i32 = 0;
     match should_recurse {
-        true => fib_num = fib::fib_rec(number),
-        false => fib_num = fib::fib_iter(number)
+        true => fib_num = fib::fib_rec::fib_rec(number),
+        false => fib_num = fib::fib_iter::fib_iter(number)
     };
 
     println!("{}th Fibonacci number is {}", number, fib_num);
