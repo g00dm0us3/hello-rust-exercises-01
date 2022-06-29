@@ -14,4 +14,6 @@ fn main() {
     let sorted_qual = if is_sorted(&arr, 7) { "is sorted "} else { "is unsorted" };
 
     println!("array {} {}", arr_string, sorted_qual);
+
+    
 }

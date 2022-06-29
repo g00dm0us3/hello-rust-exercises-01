@@ -1,4 +1,5 @@
-// borrowing - passing w/o takinbg ownership
+mod sorts;
+// borrowing - passing w/o taking ownership
 pub fn find_min(arr: &[i32]) -> i32 {
     let mut min = i32::max_value();
 
@@ -61,15 +62,6 @@ pub fn bin_search(needle: i32, arr: &[i32], sz: usize) -> Option<usize>{
     let mut left: usize = 0;
     let mut right: usize = size - 1;
 
-    // 1, 2, 3, 4, 5
-    // seed = 2
-    // 0+4/2 = 2 = [3]
-    // seed < [3]
-    // 0+2 / 2 = 1
-    // found!
-
-    // seed = 1
-    // 1, 2, 3, 4
     while left <= right {
 
         if left == right && needle != arr__[left] { break; }

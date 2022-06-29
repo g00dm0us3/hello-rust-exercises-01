@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod tests{ 
+mod tests { 
     use crate::primitive_arr::*;
 
     #[test]
