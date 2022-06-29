@@ -8,5 +8,10 @@ fn main() {
 
     let min_int = find_min(&arr);
 
-    println!("(__i32__) min = {} in {}", min_int, arr.map(|el| el.to_string()).join(", "));
+    let arr_string = arr.map(|el| el.to_string()).join(", ");
+    println!("(__i32__) min = {} in {}", min_int, arr_string);
+
+    let sorted_qual = if is_sorted(&arr, 7) { "is sorted "} else { "is unsorted" };
+
+    println!("array {} {}", arr_string, sorted_qual);
 }

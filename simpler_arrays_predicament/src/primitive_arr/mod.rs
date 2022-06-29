@@ -35,10 +35,64 @@ pub fn is_sorted(arr: &[i32], sz: usize) -> bool {
     return true;
 }
 
-pub fn bin_search(arr: &[i32], sz: usize) -> Option<i32> {
+pub fn bin_search(needle: i32, arr: &[i32], sz: usize) -> Option<usize>{
     if !is_sorted(arr, sz) {
         return None;
     }
 
-    return Some(0);
+    if sz == 0 {
+        return None;
+    }
+
+    let prepare_arr = || -> (&[i32], usize) {
+        if sz % 2 == 0 {
+            (&arr[0..sz-1], sz-1)
+        } else {
+            (&arr, sz)
+        }
+    };
+
+    let (arr__, size) = prepare_arr();
+
+    if size < sz && arr[size] == needle {
+        return Some(size);
+    }
+
+    let mut left: usize = 0;
+    let mut right: usize = size - 1;
+
+    // 1, 2, 3, 4, 5
+    // seed = 2
+    // 0+4/2 = 2 = [3]
+    // seed < [3]
+    // 0+2 / 2 = 1
+    // found!
+
+    // seed = 1
+    // 1, 2, 3, 4
+    while left <= right {
+
+        if left == right && needle != arr__[left] { break; }
+
+        if left.abs_diff(right) == 1 {
+            if arr__[left] == needle {
+                return Some(left);
+            }
+            if arr__[right] == needle {
+                return Some(right);
+            }
+            break;
+        }
+
+        let middle = (left+right) / 2;
+        if arr__[middle] < needle {
+            left = middle;
+        } else if arr__[middle] > needle {
+            right = middle;
+        } else {
+            return Some(middle);
+        }
+    };
+
+    return None;
 }
